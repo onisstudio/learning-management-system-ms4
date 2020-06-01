@@ -6,10 +6,10 @@ from .models import Course, Category
 
 class CourseAdmin(admin.ModelAdmin):
     list_display = (
-        'id',
         'title',
         'category',
         'price',
+        'id',
     )
 
     ordering = ('id',)
