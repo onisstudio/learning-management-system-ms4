@@ -4,7 +4,7 @@ html {
 
 body {
   background-color: #f2f2f2;
-  height: calc(100vh - 64px);
+  height: calc(100vh - 164px);
   color: #555555;
   font-family: "Ubuntu";
 }
@@ -15,16 +15,23 @@ body {
 
 /* -------------------------------- Media Queries */
 
-/* Slightly larger container on xl screens */
 @media (min-width: 1200px) {
   .container {
     max-width: 80%;
   }
 }
 
-/* fixed top navbar only on medium and up */
 @media (min-width: 992px) {
   .header-container {
-    padding-top: 64px;
+    padding-top: 164px;
+  }
+}
+@media (max-width: 991px) {
+  .header-container {
+    padding-top: 116px;
+  }
+
+  body {
+    height: calc(100vh - 116px);
   }
 }
