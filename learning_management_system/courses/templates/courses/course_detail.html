@@ -15,17 +15,37 @@
         <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
             <div class="image-container my-5">
                 {% if course.image %}
-                <img class="card-img-top img-fluid" src="{{ course.image.url }}" alt="{{ course.title }}">
+                <img class="card-img-top img-fluid" src="{{ course.image.url }}" alt="{{ course.name }}">
                 {% else %}
-                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ course.title }}">
+                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ course.name }}">
                 {% endif %}
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4">
-            <div class="course-details-container mb-5 mt-md-5">
+            <div class="mb-5 mt-md-5">
                 <p class="mb-0">{{ course.title }}</p>
-                <p class="lead mb-0 text-left font-weight-bold">${{ course.price }}</p>
+                <p class="lead mb-0 text-left font-weight-bold">{{ course.price }}  £</p>
+                {% if course.category %}
+                <p class="small mt-1 mb-0">
+                    <a class="text-muted" href="{% url 'courses' %}?category={{ course.category.title }}">
+                        <i class="fas fa-list mr-1"></i>{{ course.category.title }}
+                    </a>
+                </p>
+                {% endif %}
                 <p class="mt-3">{{ course.description }}</p>
+                <form class="form" action="{% url 'add_to_cart' course.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="col-12">
+                            <a href="{% url 'courses' %}" class="btn btn-outline-primary rounded-0 mt-5">
+                                <span class="text-uppercase">Add to Cart</span>
+                            </a>
+                            <input type="submit" class="btn btn-primary rounded-0 text-uppercase mt-5"
+                                value="Buy Now">
+                        </div>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
