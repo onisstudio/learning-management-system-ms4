@@ -28,10 +28,13 @@ def cart_contents(request):
                     'size': size,
                 })
 
+    cart_total = total
+
     context = {
         'cart_items': cart_items,
         'course_count': course_count,
         'total': total,
+        'cart_total': cart_total,
     }
 
     return context
