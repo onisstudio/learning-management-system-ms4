@@ -13,6 +13,23 @@ body {
   width: fit-content;
 }
 
+/* ------------------------------- toasts */
+
+.message-container {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  z-index: 99999999999;
+}
+
+.custom-toast {
+  overflow: visible;
+}
+
+.toast-top {
+  height: 2px;
+}
+
 /* -------------------------------- Media Queries */
 
 @media (min-width: 1200px) {
