@@ -10,7 +10,7 @@ def view_cart(request):
 
 
 def add_to_cart(request, item_id):
-    """ Add course to cart """
+    """ Add item to cart """
 
     redirect_url = request.POST.get('redirect_url')
     cart = request.session.get('cart', {})
@@ -20,3 +20,14 @@ def add_to_cart(request, item_id):
     request.session['cart'] = cart
 
     return redirect(redirect_url)
+
+
+def remove_from_cart(request, item_id):
+    """Remove the item from cart"""
+
+    print('test')
+    cart = request.session.get('cart', {})
+    cart.pop(item_id)
+
+    request.session['cart'] = cart
+    return render(request, 'cart/cart.html')

@@ -113,6 +113,9 @@ DATABASES = {
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': '',
         'PORT': '',
+        'OPTIONS': {
+            'sql_mode': 'traditional',
+        },
     }
 }
 

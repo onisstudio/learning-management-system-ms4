@@ -31,6 +31,7 @@ class Course(models.Model):
     tags = models.TextField()
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(upload_to='courses', null=True, blank=True)
+    state = models.CharField(max_length=1, choices=STATE_CHOICES, default='1')
 
     def __str__(self):
         return self.title
