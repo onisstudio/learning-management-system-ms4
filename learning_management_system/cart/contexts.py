@@ -20,13 +20,6 @@ def cart_contents(request):
             })
         else:
             course = get_object_or_404(Course, pk=item_id)
-            for size in item_data['items_by_size'].items():
-                total += course.price
-                cart_items.append({
-                    'item_id': item_id,
-                    'course': course,
-                    'size': size,
-                })
 
     cart_total = total
 

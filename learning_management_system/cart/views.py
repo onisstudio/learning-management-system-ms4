@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
+from django.shortcuts import render, get_object_or_404, HttpResponse, redirect
 from django.contrib import messages
 
 from courses.models import Course
@@ -12,11 +12,10 @@ def view_cart(request):
     return render(request, 'cart/cart.html')
 
 
-def add_to_cart(request, item_id):
-    """ Add item to cart """
+def buy_now(request, item_id):
+    """ Buy now """
 
     course = get_object_or_404(Course, pk=item_id)
-    redirect_url = request.POST.get('redirect_url')
     cart = request.session.get('cart', {})
 
     cart[item_id] = 1
@@ -24,11 +23,30 @@ def add_to_cart(request, item_id):
     messages.success(request, f'{course.title} added to the cart')
     request.session['cart'] = cart
 
-    return redirect(redirect_url)
+    return redirect('/cart')
+
+
+def add_to_cart(request, item_id):
+    """ Add item to cart """
+
+    try:
+        course = get_object_or_404(Course, pk=item_id)
+        cart = request.session.get('cart', {})
+
+        cart[item_id] = 1
+
+        messages.success(request, f'{course.title} added to the cart')
+
+        request.session['cart'] = cart
+        return HttpResponse(status=200)
+
+    except Exception as e:
+        messages.error(request, f'Error adding course: {e}')
+        return HttpResponse(status=500)
 
 
 def remove_from_cart(request, item_id):
-    """Remove the item from cart"""
+    """ Remove item from cart """
 
     try:
         course = get_object_or_404(Course, pk=item_id)
