@@ -6,19 +6,6 @@ STATE_CHOICES = (
 )
 
 
-class Topic(models.Model):
-    title = models.CharField(max_length=254)
-    alias = models.CharField(max_length=50)
-    description = models.TextField(null=True, blank=True)
-    state = models.CharField(max_length=1, choices=STATE_CHOICES, default='1')
-
-    def __str__(self):
-        return self.title
-
-    def get_description(self):
-        return self.description
-
-
 class Course(models.Model):
     title = models.CharField(max_length=254)
     alias = models.CharField(max_length=50)
@@ -33,3 +20,29 @@ class Course(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Lesson(models.Model):
+    course = models.ForeignKey(Course, null=False, blank=False,
+                               on_delete=models.CASCADE)
+    title = models.CharField(max_length=254)
+    description = models.TextField()
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f'Lesson id:{self.id} on {self.course.title}'
+
+
+class Topic(models.Model):
+    title = models.CharField(max_length=254)
+    alias = models.CharField(max_length=50)
+    description = models.TextField(null=True, blank=True)
+    state = models.CharField(max_length=1, choices=STATE_CHOICES, default='1')
+
+    def __str__(self):
+        return self.title
+
+    def get_description(self):
+        return self.description

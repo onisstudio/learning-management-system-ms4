@@ -61,13 +61,32 @@
                 </aside>
                 <!-- Content-->
                 <section class="col-lg-8 px-0">
-                    <div class="px-4 pl-lg-0 pr-xl-5">
-                        <!-- Course description-->
-                        <div class="d-flex flex-wrap justify-content-between align-items-center pt-3">
-                            <p>{{ course.description }}</p>
+                    <!-- Course description-->
+                    <h4>Course Description</h4>
+                    <p>{{ course.description }}</p>
+                    <h4>Course Lessons</h4>
+                    {% for lesson in lessons %}
+                    <div class="accordion" id="accordionLessons">
+                        <div class="card rounded-0 mb-2">
+                            <div class="card-header bg-white p-0" id="heading_{{ lesson.id }}">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left p-3 text-decoration-none text-dark"
+                                        type="button" data-toggle="collapse" data-target="#lesson_{{ lesson.id }}"
+                                        aria-controls="lesson_{{ lesson.id }}">
+                                        {{ forloop.counter }} | {{ lesson.title }}
+                                    </button>
+                                </h2>
+                            </div>
+
+                            <div id="lesson_{{ lesson.id }}" class="collapse" aria-labelledby="heading_{{ lesson.id }}"
+                                data-parent="#accordionLessons">
+                                <div class="card-body">
+                                    {{ lesson.description }}
+                                </div>
+                            </div>
                         </div>
-                        <hr>
                     </div>
+                    {% endfor %}
                 </section>
             </div>
 
