@@ -73,7 +73,7 @@
                                     <button class="btn btn-link btn-block text-left p-3 text-decoration-none text-dark"
                                         type="button" data-toggle="collapse" data-target="#lesson_{{ lesson.id }}"
                                         aria-controls="lesson_{{ lesson.id }}">
-                                        {{ forloop.counter }} | {{ lesson.title }}
+                                        <b>{{ forloop.counter|stringformat:"02d" }} | </b> {{ lesson.title }}
                                     </button>
                                 </h2>
                             </div>

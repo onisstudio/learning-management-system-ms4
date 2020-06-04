@@ -5,9 +5,9 @@ from .models import Course, Lesson
 
 
 def all_courses(request):
-    """ A view to show all courses, including sorting and search queries """
+    """ A view to show all published courses """
 
-    courses = Course.objects.all()
+    courses = Course.objects.all().filter(state=1)
 
     context = {
         'courses': courses,
@@ -20,7 +20,7 @@ def course_detail(request, course_id):
     """ A view to show course details """
 
     course = get_object_or_404(Course, pk=course_id)
-    lessons = Lesson.objects.all()
+    lessons = Lesson.objects.all().filter(course_id=course_id)
 
     context = {
         'course': course,

@@ -11,6 +11,8 @@ class LessonAdminInline(admin.TabularInline):
 class CourseAdmin(admin.ModelAdmin):
     inlines = (LessonAdminInline,)
 
+    readonly_fields = ["user", "created", "updated"]
+
     list_display = (
         'title',
         'topic',
@@ -19,6 +21,11 @@ class CourseAdmin(admin.ModelAdmin):
     )
 
     ordering = ('id',)
+
+    def save_model(self, request, obj, form, change):
+        if not obj.user:
+            obj.user = request.user
+        obj.save()
 
 
 class TopicAdmin(admin.ModelAdmin):

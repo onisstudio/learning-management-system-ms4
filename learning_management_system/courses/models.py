@@ -1,4 +1,6 @@
 from django.db import models
+import datetime
+from django.conf import settings
 
 STATE_CHOICES = (
     ('1', 'Published'),
@@ -7,6 +9,8 @@ STATE_CHOICES = (
 
 
 class Course(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True,
+                             on_delete=models.SET_NULL, editable=False)
     title = models.CharField(max_length=254)
     alias = models.CharField(max_length=50)
     description = models.TextField()
@@ -16,7 +20,17 @@ class Course(models.Model):
     tags = models.TextField()
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(upload_to='courses', null=True, blank=True)
+    created = models.DateTimeField(editable=False)
+    updated = models.DateTimeField(editable=False)
     state = models.CharField(max_length=1, choices=STATE_CHOICES, default='1')
+
+    def save(self, *args, **kwargs):
+        """ Update timestamp on save """
+
+        if not self.id:
+            self.created = datetime.datetime.now()
+        self.updated = datetime.datetime.now()
+        return super(Course, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
