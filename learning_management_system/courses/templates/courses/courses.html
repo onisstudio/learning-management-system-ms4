@@ -1,29 +1,25 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
+{% block hero_section %}
+<div class="hero-section-overlap pt-4">
+    <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+        <div class="pr-lg-4 text-center text-lg-left">
+            <h1 class="h3 text-light mb-0">Courses</h1>
+        </div>
     </div>
 </div>
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col text-center mt-3">
-            <h2>Courses</h2>
-            <hr class="w-50 mb-1">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-10 offset-1">
-            <div class="row mt-1 mb-2"></div>
-            <div class="row">
+<section class="container mt-lg-n5" style="z-index: 10;">
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+
+            <div class="row m-0 row-cols-1 row-cols-md-2 row-cols-lg-3">
                 {% for course in courses %}
-                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card h-100 border-0">
+                <div class="col mb-4 p-0 p-md-3">
+                    <div class="card h-100">
                         {% if course.image %}
                         <a href="{% url 'course_detail' course.id %}">
                             <img class="card-img-top img-fluid" src="{{ course.image.url }}" alt="{{ course.title }}">
@@ -52,5 +48,5 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 {% endblock %}
