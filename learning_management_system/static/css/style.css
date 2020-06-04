@@ -4,13 +4,40 @@ html {
 
 body {
   background-color: #f2f2f2;
-  height: calc(100vh - 164px);
   color: #555555;
   font-family: "Ubuntu";
 }
 
+.hero-section {
+  background-image: url(../../media/brown-book-page.jpg);
+  background-color: #29303B;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+.hero-section-overlap {
+  background-color: #29303B;
+  padding-bottom: 6.375rem;
+}
+
+.hero-section-overlap+* {
+  position: relative;
+  margin-top: -4.875rem;
+  z-index: 5;
+}
+
 .main-logo-link {
   width: fit-content;
+}
+
+.mt-lg-n10 {
+  margin-top: -10rem !important;
 }
 
 /* ------------------------------- toasts */
@@ -40,15 +67,11 @@ body {
 
 @media (min-width: 992px) {
   .header-container {
-    padding-top: 164px;
+    padding-top: 128px;
   }
 }
 @media (max-width: 991px) {
   .header-container {
-    padding-top: 116px;
-  }
-
-  body {
-    height: calc(100vh - 116px);
+    padding-top: 80px;
   }
 }

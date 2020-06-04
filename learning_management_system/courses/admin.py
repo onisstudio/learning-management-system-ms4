@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Course, Category
+from .models import Course, Topic
 
 # Register your models here.
 
@@ -7,7 +7,7 @@ from .models import Course, Category
 class CourseAdmin(admin.ModelAdmin):
     list_display = (
         'title',
-        'category',
+        'topic',
         'price',
         'id',
     )
@@ -15,11 +15,11 @@ class CourseAdmin(admin.ModelAdmin):
     ordering = ('id',)
 
 
-class CategoryAdmin(admin.ModelAdmin):
+class TopicAdmin(admin.ModelAdmin):
     list_display = (
         'title',
     )
 
 
 admin.site.register(Course, CourseAdmin)
-admin.site.register(Category, CategoryAdmin)
+admin.site.register(Topic, TopicAdmin)

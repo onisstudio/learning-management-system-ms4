@@ -1,27 +1,32 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
-{% endblock %}
-
-{% block content %}
-    <div class="container h-100">
-        <div class="row h-100">
-            <div class="col my-auto">
-                <h1 class="display-4 text-black">
-                    The learning management system that you need
-                </h1>
-                <div class="my-5">
-                    <h4>
-                        <a href="" class="btn btn-lg btn-primary rounded-0 text-uppercase py-3">Start Now</a>
-                    </h4>
-                </div>
+{% block hero_section %}
+<section class="hero-section">
+    <div class="pb-lg-5 mb-lg-3">
+        <div class="container py-lg-5 mb-lg-5">
+            <h1 class="text-white">
+                The learning management system that you need
+            </h1>
+            <h2 class="text-white">
+                Learn any topic, anytime, anywhere.
+            </h2>
+            <div class="my-5">
+                <h4>
+                    <a href="" class="btn btn-lg btn-primary rounded-0 text-uppercase py-3">Start Now</a>
+                </h4>
             </div>
         </div>
     </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="container pt-3 pt-lg-0 pb-5 mt-lg-n10" style="z-index: 10;">
+    <div class="card px-lg-2 border-0 box-shadow-lg">
+        <div class="card-body px-4 pt-5 pb-4">
+
+        </div>
+    </div>
+</section>
 {% endblock %}
