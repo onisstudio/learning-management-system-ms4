@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_title %}Shopping Cart{% endblock %}
+
 {% block hero_section %}
 <div class="hero-section-overlap pt-4 bg-dark">
     <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
@@ -92,7 +94,7 @@
     $('.remove-item').click(function (e) {
         var csrfToken = "{{ csrf_token }}";
         var itemId = $(this).attr('id').split('remove_')[1];
-        var url = `/cartremove/${itemId}/`;
+        var url = `/cart/remove/${itemId}/`;
         var data = {
             'csrfmiddlewaretoken': csrfToken,
         };

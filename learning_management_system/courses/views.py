@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Course, Lesson
+from django.shortcuts import render, get_object_or_404, HttpResponse
+from django.contrib import messages
+from .models import Course, Lesson, Enrollement
 
 # Create your views here.
 
@@ -28,3 +29,27 @@ def course_detail(request, course_id):
     }
 
     return render(request, 'courses/course_detail.html', context)
+
+
+def enroll_to_course(request, course_id):
+    """ Enroll user to course """
+
+    course = get_object_or_404(Course, pk=course_id)
+
+    try:
+        obj = Enrollement.objects.get(
+            user_id=request.user.id, course_id=course_id)
+
+        messages.success(request,
+                         f'You are already enrolled to {course.title}')
+
+        return HttpResponse(status=200)
+
+    except Enrollement.DoesNotExist:
+        obj = Enrollement(user_id=request.user.id, course_id=course_id)
+        obj.save()
+
+        messages.success(request,
+                         f'You have successfully enrolled to {course.title}')
+
+        return HttpResponse(status=200)

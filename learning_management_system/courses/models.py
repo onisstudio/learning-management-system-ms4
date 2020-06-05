@@ -31,6 +31,15 @@ class Course(models.Model):
             readable_price = 'Free'
         return readable_price
 
+    def get_enrollement(self):
+        obj = Enrollement.objects.get(
+            user_id=self.user.id, course_id=self.id)
+
+        if obj:
+            return True
+        else:
+            return False
+
     def save(self, *args, **kwargs):
         """ Update timestamp on save """
 
@@ -67,3 +76,11 @@ class Topic(models.Model):
 
     def get_description(self):
         return self.description
+
+
+class Enrollement(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True,
+                             on_delete=models.SET_NULL, editable=False)
+    course = models.ForeignKey(Course, null=False, blank=False,
+                               on_delete=models.CASCADE)
+    state = models.CharField(max_length=1, choices=STATE_CHOICES, default='1')

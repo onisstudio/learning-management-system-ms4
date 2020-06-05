@@ -10,8 +10,8 @@
   <div class="toast-body">
     {{ message }}
   </div>
-  <!-- show a go to cart button if not on the cart page -->
-  {% if '/cart' not in request.path %} 
+  <!-- show a go to cart button if course added to cart -->
+  {% if message.extra_tags == 'added-to-cart' %} 
   <a href="{% url 'view_cart' %}" class="btn btn-primary btn-block rounded-0">
     <span class="text-uppercase">View Cart</span>
     <span class="icon">

@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_title %}{{ course.title }}{% endblock %}
+
 {% block hero_section %}
 <div class="hero-section-overlap pt-4 bg-dark">
     <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
@@ -49,10 +51,14 @@
                             </div>
                         </form>
                         {% else %}
-                        <a href="#"
-                            class="btn btn-lg btn-block btn-outline-primary rounded-0 text-uppercase add-to-cart"
-                            id="course_id_{{ course.id }}">Enroll Now</a>
-
+                        {% if course.get_enrollement %}
+                        <button type="button" class="btn btn-lg btn-block btn-primary rounded-0 text-uppercase"
+                            disabled>Enrolled</button>
+                        {% else %}
+                        <button type="button"
+                            class="btn btn-lg btn-block btn-primary rounded-0 text-uppercase enroll-to-course"
+                            id="course_id_{{ course.id }}">Enroll Now</button>
+                        {% endif %}
                         {% endif %}
 
                         {% if course.topic %}
@@ -120,11 +126,27 @@
             $(this).siblings('.card-header').find('button.btn-link').removeClass('text-primary')
                 .addClass('text-dark');
         });
+
         // Add course to cart ajax
         $('.add-to-cart').click(function (e) {
             var csrfToken = "{{ csrf_token }}";
             var itemId = $(this).attr('id').split('course_id_')[1];
-            var url = `/cartadd/${itemId}/`;
+            var url = `/cart/add/${itemId}/`;
+            var data = {
+                'csrfmiddlewaretoken': csrfToken,
+            };
+
+            $.post(url, data)
+                .done(function () {
+                    location.reload();
+                });
+        })
+
+        // Enroll user to course ajax
+        $('.enroll-to-course').click(function (e) {
+            var csrfToken = "{{ csrf_token }}";
+            var itemId = $(this).attr('id').split('course_id_')[1];
+            var url = `/courses/enroll/${itemId}/`;
             var data = {
                 'csrfmiddlewaretoken': csrfToken,
             };

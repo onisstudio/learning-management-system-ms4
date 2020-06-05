@@ -35,7 +35,9 @@ def add_to_cart(request, item_id):
 
         cart[item_id] = 1
 
-        messages.success(request, f'{course.title} added to the cart')
+        messages.success(
+            request, f'{course.title} added to the cart',
+            extra_tags='added-to-cart')
 
         request.session['cart'] = cart
         return HttpResponse(status=200)
