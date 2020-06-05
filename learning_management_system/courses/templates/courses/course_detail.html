@@ -2,13 +2,13 @@
 {% load static %}
 
 {% block hero_section %}
-<div class="hero-section-overlap pt-4">
+<div class="hero-section-overlap pt-4 bg-dark">
     <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
         <div class="pr-lg-4 text-center text-lg-left">
-            <h1 class="h3 text-light mb-0">{{ course.title }}</h1>
+            <h1 class="text-light mb-0">{{ course.title }}</h1>
         </div>
-        <div class="mb-3 mb-lg-0 pt-lg-2">
-            {{ course.price }} £
+        <div class="mb-lg-0 text-center text-lg-right">
+            <h1 class="mb-0"><span class="badge badge-primary">{{ course.get_price }}</span></h1>
         </div>
     </div>
 </div>
@@ -63,19 +63,21 @@
                 <section class="col-lg-8 px-0">
                     <!-- Course description-->
                     <h4>Course Description</h4>
+                    <hr class="mt-0">
                     <p>{{ course.description }}</p>
                     <h4>Course Lessons</h4>
-                    {% for lesson in lessons %}
+                    <hr class="mt-0">
+                    {% if lessons %}
                     <div class="accordion" id="accordionLessons">
-                        <div class="card rounded-0 mb-2">
+                        {% for lesson in lessons %}
+                        <div class="card rounded-0 mb-2 border-bottom">
                             <div class="card-header bg-white p-0" id="heading_{{ lesson.id }}">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link btn-block text-left p-3 text-decoration-none text-dark"
-                                        type="button" data-toggle="collapse" data-target="#lesson_{{ lesson.id }}"
-                                        aria-controls="lesson_{{ lesson.id }}">
-                                        <b>{{ forloop.counter|stringformat:"02d" }} | </b> {{ lesson.title }}
-                                    </button>
-                                </h2>
+                                <button
+                                    class="btn btn-lg btn-link btn-block text-left p-3 text-decoration-none text-dark"
+                                    type="button" data-toggle="collapse" data-target="#lesson_{{ lesson.id }}"
+                                    aria-controls="lesson_{{ lesson.id }}">
+                                    <b>{{ forloop.counter|stringformat:"02d" }} | </b> {{ lesson.title }}
+                                </button>
                             </div>
 
                             <div id="lesson_{{ lesson.id }}" class="collapse" aria-labelledby="heading_{{ lesson.id }}"
@@ -85,8 +87,11 @@
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
+                    {% else %}
+                    <p>No lessons added yet</p>
+                    {% endif %}
                 </section>
             </div>
 
@@ -98,19 +103,30 @@
 {% block postloadjs %}
 {{ block.super }}
 <script type="text/javascript">
-    // Add course to cart ajax
-    $('.add-to-cart').click(function (e) {
-        var csrfToken = "{{ csrf_token }}";
-        var itemId = $(this).attr('id').split('course_id_')[1];
-        var url = `/cartadd/${itemId}/`;
-        var data = {
-            'csrfmiddlewaretoken': csrfToken,
-        };
+    $(document).ready(function () {
+        $('.collapse').on('show.bs.collapse', function () {
+            $(this).siblings('.card-header').find('button.btn-link').removeClass('text-dark').addClass(
+                'text-primary');
+        });
 
-        $.post(url, data)
-            .done(function () {
-                location.reload();
-            });
-    })
+        $('.collapse').on('hide.bs.collapse', function () {
+            $(this).siblings('.card-header').find('button.btn-link').removeClass('text-primary')
+                .addClass('text-dark');
+        });
+        // Add course to cart ajax
+        $('.add-to-cart').click(function (e) {
+            var csrfToken = "{{ csrf_token }}";
+            var itemId = $(this).attr('id').split('course_id_')[1];
+            var url = `/cartadd/${itemId}/`;
+            var data = {
+                'csrfmiddlewaretoken': csrfToken,
+            };
+
+            $.post(url, data)
+                .done(function () {
+                    location.reload();
+                });
+        })
+    });
 </script>
 {% endblock %}

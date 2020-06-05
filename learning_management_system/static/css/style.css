@@ -10,7 +10,6 @@ body {
 
 .hero-section {
   background-image: url(../../media/brown-book-page.jpg);
-  background-color: #29303B;
   background-repeat: no-repeat;
   background-position: bottom center;
   background-attachment: fixed;
@@ -22,7 +21,6 @@ body {
 }
 
 .hero-section-overlap {
-  background-color: #29303B;
   padding-bottom: 6.375rem;
 }
 

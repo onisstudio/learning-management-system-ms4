@@ -24,6 +24,13 @@ class Course(models.Model):
     updated = models.DateTimeField(editable=False)
     state = models.CharField(max_length=1, choices=STATE_CHOICES, default='1')
 
+    def get_price(self):
+        if self.price > 0:
+            readable_price = str(self.price) + ' £'
+        else:
+            readable_price = 'Free'
+        return readable_price
+
     def save(self, *args, **kwargs):
         """ Update timestamp on save """
 

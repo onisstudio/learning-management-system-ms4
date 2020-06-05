@@ -2,10 +2,10 @@
 {% load static %}
 
 {% block hero_section %}
-<div class="hero-section-overlap pt-4">
+<div class="hero-section-overlap pt-4 bg-dark">
     <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
         <div class="pr-lg-4 text-center text-lg-left">
-            <h1 class="h3 text-light mb-0">Courses</h1>
+            <h1 class="text-light mb-0">Courses</h1>
         </div>
     </div>
 </div>
@@ -38,7 +38,7 @@
                         <div class="card-footer bg-white pt-0 border-0 text-left">
                             <div class="row">
                                 <div class="col">
-                                    <p class="lead mb-0 text-right font-weight-bold">{{ course.price }} £</p>
+                                    <p class="lead mb-0 text-right font-weight-bold">{{ course.get_price }}</p>
                                 </div>
                             </div>
                         </div>
