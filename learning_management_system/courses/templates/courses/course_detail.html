@@ -34,6 +34,7 @@
 
                         <hr>
 
+                        {% if course.price > 0 %}
                         <form class="form" action="{% url 'buy_now' course.id %}" method="POST">
                             {% csrf_token %}
                             <div class="form-row">
@@ -47,6 +48,12 @@
                                 </div>
                             </div>
                         </form>
+                        {% else %}
+                        <a href="#"
+                            class="btn btn-lg btn-block btn-outline-primary rounded-0 text-uppercase add-to-cart"
+                            id="course_id_{{ course.id }}">Enroll Now</a>
+
+                        {% endif %}
 
                         {% if course.topic %}
                         <hr>
