@@ -17,7 +17,7 @@
 <section class="container mt-lg-n5">
     <div class="card border-0 shadow-sm">
         <div class="card-body p-4">
-
+            {% if courses %}
             <div class="row m-0 row-cols-1 row-cols-md-2 row-cols-lg-3">
                 {% for course in courses %}
                 <div class="col mb-4 p-0 p-md-3">
@@ -48,6 +48,9 @@
                 </div>
                 {% endfor %}
             </div>
+            {% else %}
+            <h2 class="text-center py-3">No courses yet.</h2>
+            {% endif %}
         </div>
     </div>
 </section>
