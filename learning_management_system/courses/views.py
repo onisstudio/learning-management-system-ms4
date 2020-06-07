@@ -3,6 +3,7 @@ from django.shortcuts import redirect, reverse
 from django.contrib import messages
 from .models import Course, Lesson, Enrollement, Topic
 from django.db.models import Q
+from django.db.models.functions import Lower
 
 # Create your views here.
 
@@ -15,7 +16,23 @@ def all_courses(request):
     query = None
     topics = None
 
+    sort = None
+    direction = None
+
     if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'title':
+                sortkey = 'lower_title'
+                courses = courses.annotate(lower_name=Lower('title'))
+
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            courses = courses.order_by(sortkey)
+
         if 'topic' in request.GET:
             topics = request.GET['topic'].split(',')
             courses = courses.filter(topic__title__in=topics)
@@ -32,10 +49,13 @@ def all_courses(request):
                 description__icontains=query)
             courses = courses.filter(queries)
 
+    current_sorting = f'{sort}_{direction}'
+
     context = {
         'courses': courses,
         'search_term': query,
         'current_topics': topics,
+        'current_sorting': current_sorting,
     }
 
     return render(request, 'courses/courses.html', context)
