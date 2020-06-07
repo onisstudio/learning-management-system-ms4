@@ -9,7 +9,7 @@
         <div class="pr-lg-4 text-center text-lg-left">
             <h1 class="text-light mb-0">Courses</h1>
             {% for topic in current_topics %}
-            <a class="btn btn-outline-light rounded-0" href="{% url 'courses' %}?topic={{ topic.alias }}">
+            <a class="btn btn-outline-light rounded-0 mt-3" href="{% url 'courses' %}?topic={{ topic.alias }}">
                 {{ topic.title }}
             </a>
             {% endfor %}
@@ -24,10 +24,8 @@
         <div class="row mt-1 mb-2">
             <div class="col-12 col-md-6">
                 <p class="text-muted mt-3 text-center text-md-left ml-md-3">
-                    {{ courses|length }} Courses
-                    {% if search_term %} found for
-                    <strong>"{{ search_term }}"</strong>
-                    {% endif %}
+                    {{ courses|length }} Courses {% if search_term %} found for
+                    <strong>"{{ search_term }}"</strong>{% endif %}
                 </p>
             </div>
             <div class="col-12 col-md-6 my-auto d-flex justify-content-center justify-content-md-end">
