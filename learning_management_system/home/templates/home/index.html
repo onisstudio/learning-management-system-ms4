@@ -6,16 +6,18 @@
 {% block hero_section %}
 <section class="hero-section bg-dark">
     <div class="pb-lg-5 mb-lg-3">
-        <div class="container py-lg-5 mb-lg-5">
-            <h1 class="text-white">
+        <div class="container text-white text-center py-lg-5 mb-lg-5">
+            <h1 class="py-5">
                 The learning management system that you need
             </h1>
-            <h2 class="text-white">
-                Learn any topic, anytime, anywhere.
+            <h2 class="d-none d-sm-block pb-5">
+                Learn any topic, anytime, anywhere. Develop your career, learn a new skill, or pursue your hobbies with
+                flexible online courses.
             </h2>
-            <div class="my-5">
+            <div class="pb-5 d-none d-sm-block">
                 <h4>
-                    <a href="" class="btn btn-lg btn-primary rounded-0 text-uppercase py-3">Start Now</a>
+                    <a href="{% url 'courses' %}" class="btn btn-lg btn-primary rounded-0 text-uppercase py-3">Start
+                        Now</a>
                 </h4>
             </div>
         </div>
@@ -24,11 +26,131 @@
 {% endblock %}
 
 {% block content %}
-<section class="container mt-lg-n10" style="z-index: 10;">
+<section class="container mt-lg-n10">
     <div class="card border-0 shadow-sm">
         <div class="card-body p-4">
-            Quisque feugiat finibus ex, id tempus odio scelerisque a. Donec consequat mi nulla. Vestibulum luctus id nibh et auctor. Nullam vitae commodo risus, sed efficitur sem. In egestas non mi feugiat pretium. Curabitur sed urna at sem ultrices euismod at eget turpis. Aenean est mauris, ultricies id congue at, venenatis ut lectus. Vestibulum a ante vel nunc fermentum ultrices et tincidunt ipsum. Ut nunc turpis, convallis eu erat a, pretium maximus magna. Integer ac dui vitae eros suscipit bibendum. Ut commodo viverra odio, vel interdum mauris eleifend non.
+            <div class="row text-center py-3">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <i class="fas fa-graduation-cap fa-6x mb-2"></i>
+                    <h3>For Students</h3>
+                    <p class="mb-0">You’ll be a competitive contender in the job market. Many of our students even
+                        see a career benefit before they graduate! </p>
+                </div>
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <i class="fas fa-user-tie fa-6x mb-2"></i>
+                    <h3>For Teachers</h3>
+                    <p class="mb-0">Online learning has rapidly emerged and is now found in every area of education,
+                        from schools to skills training.</p>
+                </div>
+                <div class="col-lg-4">
+                    <i class="fas fa-clock fa-6x mb-2"></i>
+                    <h3>Amytime, Anywhere</h3>
+                    <p class="mb-0">Enjoy lifetime access to courses and build your library for your career and
+                        personal growth</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
+<section class="container mt-5">
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+            <h2 class="card-title text-center py-3">Why study with us?</h2>
+            <div class="row text-center">
+                <div class="col">
+                    <p class="mb-5 lead">As one of the pioneers in flexible online learning, we make sure you receive
+                        world-class teaching support from enrolment to graduation. Boost your employability skills and
+                        find useful resources to help you with your life outside of work.</p>
+                </div>
+            </div>
+            <div class="row text-center d-flex justify-content-center pb-3">
+                <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
+                    <h4 class="font-weight-bold mb-4">Distance Learning</h4>
+                    <p class="text-muted px-2 mb-lg-0">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-lg-0 mb-3">
+                    <h4 class="font-weight-bold mb-4">Engaging content</h4>
+                    <p class="text-muted px-2 mb-lg-0">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-md-0 mb-3">
+                    <h4 class="font-weight-bold mb-4">Learn Anything</h4>
+                    <p class="text-muted px-2 mb-md-0">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-md-0 mb-3">
+                    <h4 class="font-weight-bold mb-4">Transforming Lives</h4>
+                    <p class="text-muted px-2 mb-md-0">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-6 pr-0">
+                            <h4 class="display-4 text-right mb-0">
+                                42
+                            </h4>
+                        </div>
+
+                        <div class="col-6">
+                            <p class="text-uppercase font-weight-normal mb-1">Courses</p>
+                            <p class="mb-0"><i class="fas fa-book fa-2x mb-0"></i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-6 pr-0">
+                            <h4 class="display-4 text-right mb-0">
+                                42
+                            </h4>
+                        </div>
+
+                        <div class="col-6">
+                            <p class="text-uppercase font-weight-normal mb-1">Students</p>
+                            <p class="mb-0"><i class="fas fa-graduation-cap fa-2x mb-0"></i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-6 pr-0">
+                            <h4 class="display-4 text-right mb-0">
+                                42
+                            </h4>
+                        </div>
+
+                        <div class="col-6">
+                            <p class="text-uppercase font-weight-normal mb-1">Teachers</p>
+                            <p class="mb-0"><i class="fas fa-user-tie fa-2x mb-0"></i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
 {% endblock %}

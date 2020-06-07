@@ -17,14 +17,13 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
 }
 
 .hero-section-overlap {
   padding-bottom: 6.375rem;
 }
 
-.hero-section-overlap+* {
+.hero-section-overlap + * {
   position: relative;
   margin-top: -4.875rem;
   z-index: 5;
@@ -71,5 +70,10 @@ body {
 @media (max-width: 991px) {
   .header-container {
     padding-top: 80px;
+  }
+}
+@media (max-width: 576px) {
+  .mt-lg-n10 {
+    margin-top: -2rem !important;
   }
 }

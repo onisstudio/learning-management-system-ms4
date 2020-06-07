@@ -17,7 +17,7 @@
 {% endblock %}
 
 {% block content %}
-<section class="container mt-lg-n5" style="z-index: 10;">
+<section class="container mt-lg-n5">
     <div class="card border-0 shadow-sm">
         <div class="card-body p-4">
 
@@ -92,13 +92,14 @@
                                     <b>{{ forloop.counter|stringformat:"02d" }} | </b> {{ lesson.title }}
                                 </button>
                             </div>
-
+                            {% if course.get_enrollement %}
                             <div id="lesson_{{ lesson.id }}" class="collapse" aria-labelledby="heading_{{ lesson.id }}"
                                 data-parent="#accordionLessons">
                                 <div class="card-body">
                                     {{ lesson.description }}
                                 </div>
                             </div>
+                            {% endif %}
                         </div>
                         {% endfor %}
                     </div>

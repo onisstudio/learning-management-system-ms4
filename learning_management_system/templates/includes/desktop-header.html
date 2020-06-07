@@ -1,12 +1,36 @@
 <div class="collapse navbar-collapse" id="main-nav">
     <ul class="navbar-nav w-auto mx-auto">
         <li class="nav-item dropdown">
-            <a class="font-weight-bold nav-link mr-5" href="#" id="courses-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="font-weight-bold nav-link mr-5" href="{% url 'home' %}" id="home-link">
+                Home
+            </a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="font-weight-bold nav-link mr-5" href="#" id="courses-link" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 Courses
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="courses-link">
                 <a href="{% url 'courses' %}" class="dropdown-item">View All</a>
             </div>
         </li>
+        <li class="nav-item dropdown">
+            <a class="font-weight-bold nav-link" href="#" id="my-account-link" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                My Account
+            </a>
+            <div class="dropdown-menu border-0" aria-labelledby="my-account-link">
+                {% if request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                <a href="" class="dropdown-item">Course Management</a>
+                {% endif %}
+                <a href="" class="dropdown-item">My Profile</a>
+                <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                {% else %}
+                <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                {% endif %}
+            </div>
+        </li>        
     </ul>
 </div>
