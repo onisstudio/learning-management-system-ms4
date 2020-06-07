@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, HttpResponse
+from django.shortcuts import redirect, reverse
 from django.contrib import messages
 from .models import Course, Lesson, Enrollement
+from django.db.models import Q
 
 # Create your views here.
 
@@ -10,8 +12,23 @@ def all_courses(request):
 
     courses = Course.objects.all().filter(state=1)
 
+    query = None
+
+    if request.GET:
+        if 'q' in request.GET:
+            query = request.GET['q']
+            if not query:
+                messages.error(
+                    request, "No search criteria entered! Try again please.")
+                return redirect(reverse('courses'))
+
+            queries = Q(title__icontains=query) | Q(
+                description__icontains=query)
+            courses = courses.filter(queries)
+
     context = {
         'courses': courses,
+        'search_term': query,
     }
 
     return render(request, 'courses/courses.html', context)

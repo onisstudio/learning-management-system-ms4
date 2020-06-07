@@ -11,6 +11,11 @@
                 Courses
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="courses-link">
+                {% for topic in all_topics %}
+                <a href="{% url 'courses' %}?topic={{ topic.alias }}" class="dropdown-item">{{ topic.title }}</a>
+                {% endfor %}
+
+                <div class="dropdown-divider"></div>
                 <a href="{% url 'courses' %}" class="dropdown-item">View All</a>
             </div>
         </li>
