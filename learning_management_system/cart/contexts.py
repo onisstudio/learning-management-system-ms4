@@ -6,6 +6,7 @@ def cart_contents(request):
 
     cart_items = []
     total = 0
+    cart_total = 0
     cart = request.session.get('cart', {})
 
     for item_id, item_data in cart.items():
@@ -19,11 +20,13 @@ def cart_contents(request):
         else:
             course = get_object_or_404(Course, pk=item_id)
 
-    cart_total = total
+    if total > 0:
+        cart_total = str(total) + ' £'
+    else:
+        cart_total = '0.00 £'
 
     context = {
         'cart_items': cart_items,
-        'total': total,
         'cart_total': cart_total,
     }
 

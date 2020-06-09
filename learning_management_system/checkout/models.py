@@ -23,6 +23,13 @@ class Order(models.Model):
     updated = models.DateTimeField(editable=False)
     state = models.CharField(max_length=1, choices=STATE_CHOICES, default='1')
 
+    def get_order_total(self):
+        if self.order_total > 0:
+            readable_price = str(self.order_total) + ' £'
+        else:
+            readable_price = 'Free'
+        return readable_price
+
     def _generate_order_number(self):
         """
         Generate a random, unique order number using UUID
@@ -31,11 +38,10 @@ class Order(models.Model):
 
     def update_total(self):
         """
-        Update grand total each time a line item is added,
-        accounting for delivery costs.
+        Update order total each time a line item is added
         """
         self.order_total = self.lineitems.aggregate(Sum('course_price'))[
-            'course_price__sum']
+            'course_price__sum'] or 0
         self.save()
 
     def save(self, *args, **kwargs):
@@ -60,11 +66,13 @@ class Order(models.Model):
 
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False,
-                              on_delete=models.CASCADE, related_name='lineitems')
+                              on_delete=models.CASCADE,
+                              related_name='lineitems')
     course = models.ForeignKey(
         Course, null=False, blank=False, on_delete=models.CASCADE)
     course_price = models.DecimalField(
-        max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+        max_digits=6, decimal_places=2,
+        null=False, blank=False, editable=False)
 
     def save(self, *args, **kwargs):
         """

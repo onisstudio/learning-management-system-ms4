@@ -53,10 +53,10 @@
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
                 <form method="GET" action="{% url 'courses' %}">
                     <div class="input-group w-100">
-                        <input class="form-control border border-black rounded-0" type="text" name="q"
+                        <input class="form-control border border-dark rounded-0" type="text" name="q"
                             placeholder="Search our courses">
                         <div class="input-group-append">
-                            <button class="form-control btn btn-primary border border-black rounded-0" type="submit">
+                            <button class="form-control btn btn-primary border border-dark rounded-0" type="submit">
                                 <span class="icon">
                                     <i class="fas fa-search"></i>
                                 </span>
@@ -72,11 +72,7 @@
                             <div class="text-center">
                                 <div><i class="fas fa-shopping-cart fa-lg"></i></div>
                                 <p class="my-0">
-                                    {% if cart_total %}
-                                    {{ cart_total|floatformat:2 }} £
-                                    {% else %}
-                                    0.00 £
-                                    {% endif %}
+                                    {{ cart_total }}
                                 </p>
                             </div>
                         </a>
