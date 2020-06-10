@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_title %}Checkout{% endblock %}
+
+{% block hero_section %}
+<div class="hero-section-overlap pt-4 bg-dark">
+    <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+        <div class="pr-lg-4 text-center text-lg-left">
+            <h1 class="text-light mb-0">Thank you!</h1>
+            <p class="text-light">A confirmation email will be sent to
+                <strong>{{ order.email }}</strong>.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<section class="container mt-n5">
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+
+
+
+        </div>
+    </div>
+    </div>
+</section>
+{% endblock %}
