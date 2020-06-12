@@ -10,11 +10,13 @@ class OrderLineItemAdminInline(admin.TabularInline):
 class OrderAdmin(admin.ModelAdmin):
     inlines = (OrderLineItemAdminInline,)
 
-    readonly_fields = ('order_number', 'created', 'order_total',)
+    readonly_fields = ('order_number', 'created',
+                       'order_total', 'original_cart', 'stripe_pid',)
 
-    fields = ('order_number', 'full_name', 'email', 'phone_number')
+    fields = ('order_number', 'full_name', 'email',
+              'phone_number', 'order_total',)
 
-    list_display = ('order_number', 'created', 'order_total',)
+    list_display = ('order_number', 'full_name', 'created', 'order_total',)
 
     ordering = ('-created',)
 

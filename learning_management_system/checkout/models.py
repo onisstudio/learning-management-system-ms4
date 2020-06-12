@@ -22,6 +22,9 @@ class Order(models.Model):
     created = models.DateTimeField(editable=False)
     updated = models.DateTimeField(editable=False)
     state = models.CharField(max_length=1, choices=STATE_CHOICES, default='1')
+    original_cart = models.TextField(null=False, blank=False, default='')
+    stripe_pid = models.CharField(
+        max_length=254, null=False, blank=False, default='')
 
     def get_order_total(self):
         if self.order_total > 0:

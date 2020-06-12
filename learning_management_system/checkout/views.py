@@ -41,7 +41,11 @@ def checkout(request):
         }
         order_form = OrderForm(form_data)
         if order_form.is_valid():
-            order = order_form.save()
+            order = order_form.save(commit=False)
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_id - pid
+            order.original_cart = json.dumbs(cart)
+
             for item_id in cart.items():
                 try:
                     course = Course.objects.get(id=item_id[0])
