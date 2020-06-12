@@ -2,10 +2,24 @@
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Account Inactive" %}{% endblock %}
+{% block extra_title %}{% trans "Account Inactive" %}{% endblock %}
 
-{% block content %}
-<h1>{% trans "Account Inactive" %}</h1>
+{% block hero_section %}
+<div class="hero-section-overlap pt-4 bg-dark">
+  <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+    <div class="pr-lg-4 text-center text-lg-left">
+      <h1 class="text-light mb-0">{% trans "Account Inactive" %}</h1>
+    </div>
+  </div>
+</div>
+{% endblock %}
 
-<p>{% trans "This account is inactive." %}</p>
+{% block inner_content %}
+<section class="container mt-n5">
+  <div class="card border-0 shadow-sm">
+    <div class="card-body p-4">
+        <p>{% trans "This account is inactive." %}</p>
+    </div>
+  </div>
+</section>
 {% endblock %}

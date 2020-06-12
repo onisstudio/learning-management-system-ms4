@@ -2,10 +2,24 @@
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Sign Up Closed" %}{% endblock %}
+{% block extra_title %}{% trans "Sign Up Closed" %}{% endblock %}
 
-{% block content %}
-<h1>{% trans "Sign Up Closed" %}</h1>
+{% block hero_section %}
+<div class="hero-section-overlap pt-4 bg-dark">
+  <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+    <div class="pr-lg-4 text-center text-lg-left">
+      <h1 class="text-light mb-0">{% trans "Sign Up Closed" %}</h1>
+    </div>
+  </div>
+</div>
+{% endblock %}
 
-<p>{% trans "We are sorry, but the sign up is currently closed." %}</p>
+{% block inner_content %}
+<section class="container mt-n5">
+  <div class="card border-0 shadow-sm">
+    <div class="card-body p-4">
+        <p>{% trans "We are sorry, but the sign up is currently closed." %}</p>
+    </div>
+  </div>
+</section>
 {% endblock %}
