@@ -43,8 +43,9 @@ def checkout(request):
         if order_form.is_valid():
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
-            order.stripe_id - pid
-            order.original_cart = json.dumbs(cart)
+            order.stripe_pid = pid
+            order.original_cart = json.dumps(cart)
+            order.save()
 
             for item_id in cart.items():
                 try:
@@ -52,6 +53,7 @@ def checkout(request):
                     order_line_item = OrderLineItem(
                         order=order,
                         course=course,
+                        course_price=course.price,
                     )
                     order_line_item.save()
                 except Course.DoesNotExist:
