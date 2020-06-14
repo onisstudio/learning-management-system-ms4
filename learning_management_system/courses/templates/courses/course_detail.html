@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load ratings %}
 
 {% block extra_title %}{{ course.title }}{% endblock %}
 
@@ -8,10 +9,7 @@
     <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
         <div class="pr-lg-4 text-center text-lg-left">
             <h1 class="text-light mb-0">{{ course.title }}</h1>
-            {% if request.user.is_superuser %}
-                <a class="btn btn-sm btn-light" href="{% url 'edit_course' course.id %}">Edit</a> |
-                <a class="btn btn-sm btn-danger" href="{% url 'delete_course' course.id %}">Delete</a>
-            {% endif %}
+            {% ratings course 20 20 widget.html %}
         </div>
         <div class="mb-lg-0 text-center text-lg-right">
             <h1 class="mb-0"><span class="badge badge-primary">{{ course.get_price }}</span></h1>
@@ -65,15 +63,27 @@
                         {% endif %}
                         {% endif %}
 
-                        {% if course.topic %}
+                        {% if request.user.is_superuser %}
                         <hr>
-                        <p class="mt-1 mb-0">
-                            <a class="text-muted" href="{% url 'courses' %}?topic={{ course.topic.title }}">
-                                <i class="fas fa-list mr-1"></i>{{ course.topic.title }}
-                            </a>
-                        </p>
+                        <div class="row">
+                            <div class="col-6"><a class="btn btn-sm btn-outline-primary btn-block text-uppercase"
+                                    href="{% url 'edit_course' course.id %}">Edit</a></div>
+                            <div class="col-6"><a class="btn btn-sm btn-outline-danger btn-block text-uppercase"
+                                    href="{% url 'delete_course' course.id %}">Delete</a></div>
+                        </div>
                         {% endif %}
-                        <hr>
+
+                        <ul class="list-group list-group-flush">
+                            {% if course.topic %}
+                            <li class="list-group-item"><strong>Topic</strong> <span class="float-right"><a class="text-muted"
+                                        href="{% url 'courses' %}?topic={{ course.topic.title }}">{{ course.topic.title }}</a></span>
+                            </li>
+                            {% endif %}
+                            <li class="list-group-item"><strong>Rating</strong> <span
+                                    class="float-right">{% ratings course 20 20 False 'star_ratings/widget_info.html' %}
+                                    out of 5</span>
+                            </li>
+                        </ul>
                     </div>
                 </aside>
                 <!-- Content-->

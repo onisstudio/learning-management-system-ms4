@@ -3,8 +3,9 @@ from django.shortcuts import redirect, reverse
 from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
+from django.contrib.auth.decorators import login_required
 
-from .models import Course, Lesson, Enrollement, Topic
+from .models import Course, Lesson, Enrollement
 from .forms import CourseForm
 
 
@@ -12,6 +13,7 @@ def all_courses(request):
     """ A view to show all published courses """
 
     courses = Course.objects.all().filter(state=1)
+    courses = courses.order_by('-created')
 
     query = None
     topics = None
@@ -25,18 +27,13 @@ def all_courses(request):
             sort = sortkey
             if sortkey == 'title':
                 sortkey = 'lower_title'
-                courses = courses.annotate(lower_name=Lower('title'))
+                courses = courses.annotate(lower_title=Lower('title'))
 
             if 'direction' in request.GET:
                 direction = request.GET['direction']
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
             courses = courses.order_by(sortkey)
-
-        if 'topic' in request.GET:
-            topics = request.GET['topic'].split(',')
-            courses = courses.filter(topic__title__in=topics)
-            topics = Topic.objects.filter(title__in=topics)
 
         if 'q' in request.GET:
             query = request.GET['q']
@@ -75,6 +72,7 @@ def course_detail(request, course_id):
     return render(request, 'courses/course_detail.html', context)
 
 
+@login_required
 def enroll_to_course(request, course_id):
     """ Enroll user to course """
 
@@ -99,8 +97,14 @@ def enroll_to_course(request, course_id):
         return HttpResponse(status=200)
 
 
+@login_required
 def add_course(request):
     """ Add a course """
+    if not request.user.is_superuser:
+        messages.error(
+            request, 'Permissions denied. Only administrators can do that.')
+        return redirect(reverse('home'))
+
     if request.method == 'POST':
         form = CourseForm(request.POST, request.FILES)
         if form.is_valid():
@@ -121,8 +125,14 @@ def add_course(request):
     return render(request, template, context)
 
 
+@login_required
 def edit_course(request, course_id):
     """ Edit a course """
+    if not request.user.is_superuser:
+        messages.error(
+            request, 'Permissions denied. Only administrators can do that.')
+        return redirect(reverse('home'))
+
     course = get_object_or_404(Course, pk=course_id)
     if request.method == 'POST':
         form = CourseForm(request.POST, request.FILES, instance=course)
@@ -132,7 +142,7 @@ def edit_course(request, course_id):
             return redirect(reverse('course_detail', args=[course.id]))
         else:
             messages.error(
-                request, 'Course update failed. Please ensure the form is valid.')
+                request, 'Course update failed. Please ensure the form is valid.')  # noqa
     else:
         form = CourseForm(instance=course)
         messages.info(request, f'You are editing {course.title}')
@@ -146,8 +156,14 @@ def edit_course(request, course_id):
     return render(request, template, context)
 
 
+@login_required
 def delete_course(request, course_id):
     """ Delete a course """
+    if not request.user.is_superuser:
+        messages.error(
+            request, 'Permissions denied. Only administrators can do that.')
+        return redirect(reverse('home'))
+
     course = get_object_or_404(Course, pk=course_id)
 
     course.delete()
