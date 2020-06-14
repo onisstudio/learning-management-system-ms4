@@ -9,8 +9,8 @@ STATE_CHOICES = (
 
 
 class Course(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=False, null=True,
-                             on_delete=models.SET_NULL)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True,
+                             on_delete=models.SET_NULL, editable=False)
     title = models.CharField(max_length=254)
     alias = models.CharField(max_length=50)
     description = models.TextField()

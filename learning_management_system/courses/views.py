@@ -101,7 +101,18 @@ def enroll_to_course(request, course_id):
 
 def add_course(request):
     """ Add a course """
-    form = CourseForm()
+    if request.method == 'POST':
+        form = CourseForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Course successfully added!')
+            return redirect(reverse('add_course'))
+        else:
+            messages.error(
+                request, 'Course not added. Please ensure the form is valid.')
+    else:
+        form = CourseForm()
+
     template = 'courses/add_course.html'
     context = {
         'form': form,
