@@ -1,0 +1,13 @@
+Dear {{ order.full_name }}!
+
+Order reference number: {{ order.order_number }}
+
+This is a confirmation of your order below:
+
+Order Date: {{ order.created }}
+Order Total: {{ order.get_order_total }}
+
+If you have any questions, feel free to contact us at {{ contact_email }}.
+
+Sincerely,
+LMS
