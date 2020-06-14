@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404, HttpResponse
 from django.shortcuts import redirect, reverse
 from django.contrib import messages
-from .models import Course, Lesson, Enrollement, Topic
 from django.db.models import Q
 from django.db.models.functions import Lower
 
-# Create your views here.
+from .models import Course, Lesson, Enrollement, Topic
+from .forms import CourseForm
 
 
 def all_courses(request):
@@ -97,3 +97,14 @@ def enroll_to_course(request, course_id):
                          f'You have successfully enrolled to {course.title}')
 
         return HttpResponse(status=200)
+
+
+def add_course(request):
+    """ Add a course """
+    form = CourseForm()
+    template = 'courses/add_course.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)

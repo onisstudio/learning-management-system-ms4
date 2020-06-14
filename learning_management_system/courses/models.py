@@ -9,15 +9,14 @@ STATE_CHOICES = (
 
 
 class Course(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True,
-                             on_delete=models.SET_NULL, editable=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=False, null=True,
+                             on_delete=models.SET_NULL)
     title = models.CharField(max_length=254)
     alias = models.CharField(max_length=50)
     description = models.TextField()
     topic = models.ForeignKey(
         'Topic', null=True, blank=True, on_delete=models.SET_NULL)
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    tags = models.TextField()
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(upload_to='courses', null=True, blank=True)
     created = models.DateTimeField(editable=False)
