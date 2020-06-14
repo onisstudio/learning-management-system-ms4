@@ -53,7 +53,8 @@
                             </div>
                         </form>
                         {% else %}
-                        {% if course.get_enrollement %}
+
+                        {% if is_enrolled %}
                         <button type="button" class="btn btn-lg btn-block btn-primary rounded-0 text-uppercase"
                             disabled>Enrolled</button>
                         {% else %}

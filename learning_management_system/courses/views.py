@@ -63,9 +63,17 @@ def course_detail(request, course_id):
 
     course = get_object_or_404(Course, pk=course_id)
     lessons = Lesson.objects.all().filter(course_id=course_id)
+    enrolled = Enrollement.objects.all().filter(
+        user_id=request.user.id, course_id=course_id)
+
+    if enrolled:
+        is_enrolled = True
+    else:
+        is_enrolled = False
 
     context = {
         'course': course,
+        'is_enrolled': is_enrolled,
         'lessons': lessons,
     }
 

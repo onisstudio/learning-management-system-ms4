@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load ratings %}
 
 {% block extra_title %}Courses{% endblock %}
 
@@ -45,7 +46,8 @@
                             Price</option>
                         <option value="title_asc" {% if current_sorting == 'title_asc' %}selected{% endif %}>Title (A-Z)
                         </option>
-                        <option value="title_desc" {% if current_sorting == 'title_desc' %}selected{% endif %}>Title (Z-A)
+                        <option value="title_desc" {% if current_sorting == 'title_desc' %}selected{% endif %}>Title
+                            (Z-A)
                         </option>
                     </select>
                 </div>
@@ -71,6 +73,8 @@
                                 alt="{{ course.title }}">
                         </a>
                         {% endif %}
+                        <span
+                            class="badge badge-primary font-weight-bold rounded-0 shadow-sm price-badge">{{ course.get_price }}</span>
                         <div class="card-body pb-0">
                             <p class="mb-3">
                                 <a href="{% url 'course_detail' course.id %}">{{ course.title }}</a>
@@ -89,7 +93,8 @@
                                     {% endif %}
                                 </div>
                                 <div class="col">
-                                    <p class="lead mb-0 text-right font-weight-bold">{{ course.get_price }}</p>
+                                    <span
+                                        class="float-right">{% ratings course 20 20 False 'star_ratings/widget.html' %}</span>
                                 </div>
                             </div>
                         </div>

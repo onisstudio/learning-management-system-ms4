@@ -2,6 +2,8 @@ from django.db import models
 import datetime
 from django.conf import settings
 
+from profiles.models import UserProfile
+
 STATE_CHOICES = (
     ('1', 'Published'),
     ('0', 'Unpublished'),
@@ -9,8 +11,9 @@ STATE_CHOICES = (
 
 
 class Course(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True,
-                             on_delete=models.SET_NULL, editable=False)
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+                                     null=True, blank=True,
+                                     related_name='courses')
     title = models.CharField(max_length=254)
     alias = models.CharField(max_length=50)
     description = models.TextField()
@@ -29,15 +32,6 @@ class Course(models.Model):
         else:
             readable_price = 'Free'
         return readable_price
-
-    def get_enrollement(self):
-        obj = Enrollement.objects.get(
-            user_id=self.user.id, course_id=self.id)
-
-        if obj:
-            return True
-        else:
-            return False
 
     def save(self, *args, **kwargs):
         """ Update timestamp on save """

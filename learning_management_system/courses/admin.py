@@ -11,7 +11,7 @@ class LessonAdminInline(admin.TabularInline):
 class CourseAdmin(admin.ModelAdmin):
     inlines = (LessonAdminInline,)
 
-    readonly_fields = ["created", "updated"]
+    readonly_fields = ['user_profile', 'created', 'updated']
 
     list_display = (
         'title',
