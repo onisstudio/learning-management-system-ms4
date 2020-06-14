@@ -8,6 +8,10 @@
     <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
         <div class="pr-lg-4 text-center text-lg-left">
             <h1 class="text-light mb-0">{{ course.title }}</h1>
+            {% if request.user.is_superuser %}
+                <a class="btn btn-sm btn-light" href="{% url 'edit_course' course.id %}">Edit</a> |
+                <a class="btn btn-sm btn-danger" href="{% url 'delete_course' course.id %}">Delete</a>
+            {% endif %}
         </div>
         <div class="mb-lg-0 text-center text-lg-right">
             <h1 class="mb-0"><span class="badge badge-primary">{{ course.get_price }}</span></h1>
