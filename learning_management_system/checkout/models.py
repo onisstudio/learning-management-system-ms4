@@ -1,5 +1,6 @@
 import uuid
 import datetime
+from django.utils import timezone
 
 from django.db import models
 from django.db.models import Sum
@@ -23,8 +24,8 @@ class Order(models.Model):
     phone_number = models.CharField(max_length=20, null=False, blank=False)
     order_total = models.DecimalField(
         max_digits=10, decimal_places=2, null=False, default=0)
-    created = models.DateTimeField(editable=False)
-    updated = models.DateTimeField(editable=False)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now_add=True)
     state = models.CharField(max_length=1, choices=STATE_CHOICES, default='1')
     original_cart = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(
@@ -62,8 +63,8 @@ class Order(models.Model):
         """ Update timestamp on save """
 
         if not self.id:
-            self.created = datetime.datetime.now()
-        self.updated = datetime.datetime.now()
+            self.created = datetime.datetime.now(tz=timezone.utc)
+        self.updated = datetime.datetime.now(tz=timezone.utc)
 
         super().save(*args, **kwargs)
 
