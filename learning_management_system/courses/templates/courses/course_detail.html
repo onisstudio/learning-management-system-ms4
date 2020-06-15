@@ -39,19 +39,24 @@
                         <hr>
 
                         {% if course.price > 0 %}
+                        {% if is_enrolled %}
+                        <button type="button" class="btn btn-lg btn-block btn-primary rounded-0 text-uppercase"
+                            disabled>Enrolled</button>
+                        {% else %}
                         <form class="form" action="{% url 'buy_now' course.id %}" method="POST">
                             {% csrf_token %}
                             <div class="form-row">
                                 <div class="col-12">
                                     <a href="#"
-                                        class="btn btn-lg btn-block btn-outline-primary rounded-0 text-uppercase add-to-cart"
-                                        id="course_id_{{ course.id }}">Add to Cart</a>
+                                    class="btn btn-lg btn-block btn-outline-primary rounded-0 text-uppercase add-to-cart"
+                                    id="course_id_{{ course.id }}">Add to Cart</a>
                                     <input type="submit"
-                                        class="btn btn-lg btn-block btn-primary rounded-0 text-uppercase"
-                                        value="Buy Now">
+                                    class="btn btn-lg btn-block btn-primary rounded-0 text-uppercase"
+                                    value="Buy Now">
                                 </div>
                             </div>
                         </form>
+                        {% endif %}
                         {% else %}
 
                         {% if is_enrolled %}

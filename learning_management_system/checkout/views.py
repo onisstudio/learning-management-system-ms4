@@ -8,7 +8,7 @@ from .forms import OrderForm
 from .models import Order, OrderLineItem
 from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
-from courses.models import Course
+from courses.models import Course, Enrollement
 from cart.contexts import cart_contents
 
 import stripe
@@ -44,6 +44,11 @@ def checkout(request):
                         course_price=course.price,
                     )
                     order_line_item.save()
+                    enrollement_item = Enrollement(
+                        course_id=course.id,
+                        user_id=request.user.id,
+                    )
+                    enrollement_item.save()
                 except Course.DoesNotExist:
                     messages.error(request, (
                         "One of the courses in your cart \
