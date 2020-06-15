@@ -54,6 +54,7 @@ form.addEventListener('submit', function (ev) {
         'disabled': true
     });
     $('#payment-form').fadeToggle(100);
+    $('#loading-overlay').fadeToggle(100);
     $('#submit-button').attr('disabled', true);
 
     var saveInfo = Boolean($('#id-save-info').attr('checked'));
@@ -86,6 +87,7 @@ form.addEventListener('submit', function (ev) {
                 <span>${result.error.message}</span>`;
                 $(errorDiv).html(html);
                 $('#payment-form').fadeToggle(100);
+                $('#loading-overlay').fadeToggle(100);
                 card.update({
                     'disabled': false
                 });
