@@ -26,9 +26,9 @@
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="my-account-link">
                 {% if request.user.is_authenticated %}
-                {% if request.user.is_superuser %}
+                <!-- {% if request.user.is_superuser %}
                 <a href="{% url 'add_course' %}" class="dropdown-item">Add course</a>
-                {% endif %}
+                {% endif %} -->
                 <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
                 <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
                 {% else %}
