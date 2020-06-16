@@ -9,7 +9,7 @@ body {
 }
 
 .hero-section {
-  background-image: url(../../media/brown-book-page.jpg);
+  background-image: url(/media/brown-book-page.jpg);
   background-repeat: no-repeat;
   background-position: bottom center;
   background-attachment: fixed;
