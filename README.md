@@ -14,21 +14,21 @@ LMS is an app where you can add new courses or where you can learn new things fr
 
 ### User Stories
 
-As a Student I want to:
+- as a Student I want to:
 
-    - view a list of courses so I can select some to purchase
-    - view individual course details so I can view the price, description or image
-    - add a course to my cart so that I can buy that course
-    - review my cart so I can make adjustments prior to checkout
-    - review my orders so I can see what I’ve purchased in the past
-    - search for a course so that I can find a specific course
-    - add a rating for a ourse so that other students can know the course rating
+  - view a list of courses so I can select some to purchase
+  - view individual course details so I can view the price, description or image
+  - add a course to my cart so that I can buy that course
+  - review my cart so I can make adjustments prior to checkout
+  - review my orders so I can see what I’ve purchased in the past
+  - search for a course so that I can find a specific course
+  - add a rating for a ourse so that other students can know the course rating
 
-As an Admin I want to:
+- as an Admin I want to:
 
-    - add new courses so I can have more students joining
-    - add as many lessons as I need for a course so that students learn new things
-    - add a course in a specific topic so that can make it easier for students to easily find courses
+  - add new courses so I can have more students joining
+  - add as many lessons as I need for a course so that students learn new things
+  - add a course in a specific topic so that can make it easier for students to easily find courses
 
 ### Structure
 
@@ -78,6 +78,10 @@ From the frontend users can search for courses, view individual course details, 
 ## Testing
 
 The app was tested on all major browsers with no known issues.
+
+When I started the deployment process I coould not deploy to Heroku as I had an issue with Heroku not detecting the language used. After spending lots of time trying to figure out what I am doing wrong I found out that I had all my project files in an unnecessary extra folder, not directly on the root of the project, this was created at the very start of the project and I am not sure why I didn`t noticed it until deployment.
+
+When testing on the official validator services I had some HTML errors and warnings which were corrected. There are also some errors on warnings on CSS all of them from Bootstrap.
 
 ## Deployment
 
