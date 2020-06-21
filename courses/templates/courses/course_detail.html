@@ -112,7 +112,7 @@
                                     <b>{{ forloop.counter|stringformat:"02d" }} | </b> {{ lesson.title }}
                                 </button>
                             </div>
-                            {% if course.get_enrollement %}
+                            {% if is_enrolled %}
                             <div id="lesson_{{ lesson.id }}" class="collapse" aria-labelledby="heading_{{ lesson.id }}"
                                 data-parent="#accordionLessons">
                                 <div class="card-body">
