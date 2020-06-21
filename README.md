@@ -15,6 +15,7 @@ LMS is an app where you can add new courses or where you can learn new things fr
 ### User Stories
 
 As a Student I want to:
+
     - view a list of courses so I can select some to purchase
     - view individual course details so I can view the price, description or image
     - add a course to my cart so that I can buy that course
@@ -24,6 +25,7 @@ As a Student I want to:
     - add a rating for a ourse so that other students can know the course rating
 
 As an Admin I want to:
+
     - add new courses so I can have more students joining
     - add as many lessons as I need for a course so that students learn new things
     - add a course in a specific topic so that can make it easier for students to easily find courses
@@ -37,9 +39,13 @@ From the frontend users can search for courses, view individual course details, 
 ### Skeleton
 
 [Landing wireframe](https://github.com/onisstudio/learning-management-system-ms4/blob/master/wireframes/landing.png)
+
 [Courses wireframe](https://github.com/onisstudio/learning-management-system-ms4/blob/master/wireframes/courses.png)
+
 [Course wireframe](https://github.com/onisstudio/learning-management-system-ms4/blob/master/wireframes/course.png)
+
 [Cart wireframe](https://github.com/onisstudio/learning-management-system-ms4/blob/master/wireframes/cart.png)
+
 [Checkout wireframe](https://github.com/onisstudio/learning-management-system-ms4/blob/master/wireframes/checkout.png)
 
 ### Surface
@@ -55,17 +61,19 @@ From the frontend users can search for courses, view individual course details, 
 
 ## Features
 
-    - Existing Features:
-        - create an account
-        - add courses to your cart so that you can buy them from the checkout page
-        - remove courses from your cart
-        - search for specific courses
+- Existing Features:
 
-    - Features to Implement:
-        - add images/videos as lessons
-        - add courses/lessons from the frontent
-        - add quizzes at the end of the courses
-        - give certificates on course completion
+  - create an account
+  - add courses to your cart so that you can buy them from the checkout page
+  - remove courses from your cart
+  - search for specific courses
+
+- Features to Implement:
+
+  - add images/videos as lessons
+  - add courses/lessons from the frontent
+  - add quizzes at the end of the courses
+  - give certificates on course completion
 
 ## Testing
 
@@ -75,16 +83,17 @@ The app was tested on all major browsers with no known issues.
 
 The site is hosted on GitHub, deployed from the master branch. The deployed site will update automatically upon new commits to the master branch.
 
-The project is also hosted on Heroku [here](https://personaljournal.herokuapp.com/). To deploy the app to Heroku, you typically use the git push command to push the code from your local repository's master branch to your heroku remote, like so: \$ git push heroku master.
+The project is also hosted on Heroku [here](https://lms-ms4.herokuapp.com/). To deploy the app to Heroku, you typically use the git push command to push the code from your local repository's master branch to your heroku remote, like so: \$ git push heroku master.
 
-To run locally, you can clone this repository directly into the editor of your choice by pasting git clone <https://github.com/onisstudio/personal-journal-ms3.git> into your terminal. To cut ties with this GitHub repository, type git remote rm origin into the terminal.
+To run locally, you can clone this repository directly into the editor of your choice by pasting git clone <https://github.com/onisstudio/learning-management-system-ms4.git> into your terminal. To cut ties with this GitHub repository, type git remote rm origin into the terminal.
 
 The following process was undertaken to succesfully deploy the project on the Heroku:
-    - Added a requirements.txt file using 'pip freeze > requirements.txt', so that Heroku knows which apps to install to get the project running
-    - Created a Procfile with 'web: gunicorn learning_management_system.wsgi:application'
-    - Pushed everything to Github
-    - Created a Heroku app with all the environmental variables that I'm using within the project
-    - From the Deploy tab I enabled Automatic deploys
+
+- Added a requirements.txt file using 'pip freeze > requirements.txt', so that Heroku knows which apps to install to get the project running
+- Created a Procfile with 'web: gunicorn learning_management_system.wsgi:application'
+- Pushed everything to Github
+- Created a Heroku app with all the environmental variables that I'm using within the project
+- From the Deploy tab I enabled Automatic deploys
 
 ## Credits
 
