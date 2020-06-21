@@ -36,6 +36,12 @@ From the frontend users can search for courses, view individual course details, 
 
 ### Skeleton
 
+[Landing wireframe](https://github.com/onisstudio/learning-management-system-ms4/blob/master/wireframes/landing.png)
+[Courses wireframe](https://github.com/onisstudio/learning-management-system-ms4/blob/master/wireframes/courses.png)
+[Course wireframe](https://github.com/onisstudio/learning-management-system-ms4/blob/master/wireframes/course.png)
+[Cart wireframe](https://github.com/onisstudio/learning-management-system-ms4/blob/master/wireframes/cart.png)
+[Checkout wireframe](https://github.com/onisstudio/learning-management-system-ms4/blob/master/wireframes/checkout.png)
+
 ### Surface
 
 ## Technologies
@@ -78,7 +84,7 @@ The following process was undertaken to succesfully deploy the project on the He
     - Created a Procfile with 'web: gunicorn learning_management_system.wsgi:application'
     - Pushed everything to Github
     - Created a Heroku app with all the environmental variables that I'm using within the project
-    - From the Deply tab I enabled Automatic deploys
+    - From the Deploy tab I enabled Automatic deploys
 
 ## Credits
 
