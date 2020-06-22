@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.shortcuts import HttpResponse, get_object_or_404
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.conf import settings
 
@@ -15,6 +16,7 @@ import stripe
 import json
 
 
+@login_required
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
