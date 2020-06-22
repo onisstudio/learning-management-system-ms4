@@ -81,6 +81,8 @@ The app was tested on all major browsers with no known issues.
 
 When I started the deployment process I coould not deploy to Heroku as I had an issue with Heroku not detecting the language used. After spending lots of time trying to figure out what I am doing wrong I found out that I had all my project files in an unnecessary extra folder, not directly on the root of the project, this was created at the very start of the project and I am not sure why I didn`t noticed it until deployment.
 
+While testing the checkout function I realized that if a guest buys a course there is no way to know which guest bought the course so that will make the course available to all guests so I added @login_required for the checkout page for the moment.
+
 When testing on the official validator services I had some HTML errors and warnings which were corrected. There are also some errors on warnings on CSS all of them from Bootstrap.
 
 ## Deployment
