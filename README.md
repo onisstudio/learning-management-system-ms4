@@ -85,6 +85,8 @@ While testing the checkout function I realized that if a guest buys a course the
 
 When testing on the official validator services I had some HTML errors and warnings which were corrected. There are also some errors on warnings on CSS all of them from Bootstrap.
 
+Admin demo user: ademo/ademoademo
+
 ## Deployment
 
 The site is hosted on GitHub, deployed from the master branch. The deployed site will update automatically upon new commits to the master branch.
