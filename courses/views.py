@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 from django.contrib.auth.decorators import login_required
 
-from .models import Course, Lesson, Enrollement
+from .models import Course, Lesson, Enrollement, Topic
 from .forms import CourseForm
 
 
@@ -34,6 +34,11 @@ def all_courses(request):
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
             courses = courses.order_by(sortkey)
+
+        if 'topic' in request.GET:
+            topics = request.GET['topic'].split(',')
+            courses = courses.filter(topic__alias__in=topics)
+            topics = Topic.objects.filter(alias__in=topics)
 
         if 'q' in request.GET:
             query = request.GET['q']

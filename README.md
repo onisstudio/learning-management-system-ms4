@@ -36,6 +36,8 @@ The app is strucured with a backend and a frontend. Backend is only accessible b
 
 From the frontend users can search for courses, view individual course details, add ratings, buy courses or enroll to courses.
 
+After an user purchases a course the lessons will become available for him to see by clicking on the lesson name and the content will slide down, if the course is not purchased clicking on the lesson title will do nothing.
+
 ### Skeleton
 
 [Landing wireframe](https://github.com/onisstudio/learning-management-system-ms4/blob/master/wireframes/landing.png)

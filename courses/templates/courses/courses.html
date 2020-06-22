@@ -86,7 +86,7 @@
                                     {% if course.topic %}
                                     <p class="lead mb-0 font-weight-bold">
                                         <a class="text-muted text-decoration-none"
-                                            href="{% url 'courses' %}?topic={{ course.topic.title }}">
+                                            href="{% url 'courses' %}?topic={{ course.topic.alias }}">
                                             <i class="fas fa-list mr-1"></i>{{ course.topic.title }}
                                         </a>
                                     </p>
