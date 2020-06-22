@@ -48,21 +48,24 @@
                             <div class="form-row">
                                 <div class="col-12">
                                     <a href="#"
-                                    class="btn btn-lg btn-block btn-outline-primary rounded-0 text-uppercase add-to-cart"
-                                    id="course_id_{{ course.id }}">Add to Cart</a>
+                                        class="btn btn-lg btn-block btn-outline-primary rounded-0 text-uppercase add-to-cart"
+                                        id="course_id_{{ course.id }}">Add to Cart</a>
                                     <input type="submit"
-                                    class="btn btn-lg btn-block btn-primary rounded-0 text-uppercase"
-                                    value="Buy Now">
+                                        class="btn btn-lg btn-block btn-primary rounded-0 text-uppercase"
+                                        value="Buy Now">
                                 </div>
                             </div>
                         </form>
                         {% endif %}
                         {% else %}
 
-                        {% if is_enrolled %}
+                        {% if is_enrolled and user.is_authenticated %}
                         <button type="button" class="btn btn-lg btn-block btn-primary rounded-0 text-uppercase"
                             disabled>Enrolled</button>
-                        {% else %}
+                        {% elif not user.is_authenticated %}
+                        <a href="{% url 'account_login' %}"
+                            class="btn btn-lg btn-block btn-primary rounded-0 text-uppercase">Login to Enroll</a>
+                        {% elif not is_enrolled and user.is_authenticated %}
                         <button type="button"
                             class="btn btn-lg btn-block btn-primary rounded-0 text-uppercase enroll-to-course"
                             id="course_id_{{ course.id }}">Enroll Now</button>
@@ -81,7 +84,8 @@
 
                         <ul class="list-group list-group-flush">
                             {% if course.topic %}
-                            <li class="list-group-item"><strong>Topic</strong> <span class="float-right"><a class="text-muted"
+                            <li class="list-group-item"><strong>Topic</strong> <span class="float-right"><a
+                                        class="text-muted"
                                         href="{% url 'courses' %}?topic={{ course.topic.title }}">{{ course.topic.title }}</a></span>
                             </li>
                             {% endif %}
